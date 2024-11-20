@@ -1,4 +1,4 @@
-﻿namespace MultiTenancy.Administration.Forms;
+namespace MultiTenancy.Administration.Forms;
 
 [FormScript("Administration.User")]
 [BasedOnRow(typeof(UserRow), CheckNames = true)]
@@ -19,4 +19,7 @@ public class UserForm
     [OneWay]
     public string Source { get; set; }
     public bool IsActive { get; set; }
+    public int? TenantId { get; set; }
+
+
 }

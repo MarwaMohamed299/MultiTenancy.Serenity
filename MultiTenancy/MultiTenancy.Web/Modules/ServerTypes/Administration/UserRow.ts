@@ -10,6 +10,8 @@ export interface UserRow {
     Email?: string;
     UserImage?: string;
     LastDirectoryUpdate?: string;
+    TenantId?: number;
+    TenantName?: string;
     IsActive?: number;
     Password?: string;
     PasswordConfirm?: string;

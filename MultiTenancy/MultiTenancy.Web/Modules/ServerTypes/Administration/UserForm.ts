@@ -10,6 +10,7 @@ export interface UserForm {
     PasswordConfirm: PasswordEditor;
     Source: StringEditor;
     IsActive: BooleanEditor;
+    TenantId: LookupEditor;
 }
 
 export class UserForm extends PrefixedContext {
@@ -38,7 +39,8 @@ export class UserForm extends PrefixedContext {
                 'Password', w4,
                 'PasswordConfirm', w4,
                 'Source', w0,
-                'IsActive', w5
+                'IsActive', w5,
+                'TenantId', w2
             ]);
         }
     }

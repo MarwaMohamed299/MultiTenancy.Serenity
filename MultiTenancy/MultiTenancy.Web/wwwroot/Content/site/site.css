@@ -11,3 +11,15 @@
 .s-PermissionCheckEditor {
   min-height: 450px;
 }
+
+.s-Administration-UserDialog > .size {
+  width: 650px;
+}
+
+.s-Administration-UserDialog .caption {
+  width: 150px;
+}
+
+.s-Administration-UserDialog .s-PropertyGrid .categories {
+  height: 470px;
+}

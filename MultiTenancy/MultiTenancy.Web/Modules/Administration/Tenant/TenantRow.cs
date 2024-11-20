@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System.ComponentModel;
@@ -6,10 +6,12 @@ using System.ComponentModel;
 namespace MultiTenancy.Modules.Administration.Tenant;
 
 [ConnectionKey("Default"), Module("Adminstration"), TableName("Tenants")]
-[DisplayName("Tenant"), InstanceName("Tenant")]
-[ReadPermission("Adminstration:Tenants")]
-[ModifyPermission("Adminstration:Tenants")]
+[DisplayName("Tenant"), InstanceName("Tenant") , TwoLevelCached]
+[ReadPermission(PermissionKeys.Tenants)]
+[ModifyPermission(PermissionKeys.Tenants)]
 [ServiceLookupPermission("Adminstration:Tenants")]
+[LookupScript("Administration.Tenant")]
+
 public sealed class TenantRow : Row<TenantRow.RowFields>, IIdRow, INameRow
 {
     [DisplayName("Tenant Id"), Identity, IdProperty]
