@@ -1,4 +1,4 @@
-﻿namespace MultiTenancy.Administration;
+namespace MultiTenancy.Administration;
 
 [NestedPermissionKeys]
 [DisplayName("Administration")]
@@ -9,4 +9,7 @@ public class PermissionKeys
 
     [Description("Languages and Translations")]
     public const string Translation = "Administration:Translation";
+
+    [Description("Tenant Management")]
+    public const string Tenants = "Administration:Tenants";
 }

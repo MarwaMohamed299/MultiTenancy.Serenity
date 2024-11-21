@@ -48,6 +48,8 @@ public sealed class UserRow : Serenity.Extensions.Entities.LoggingRow<UserRow.Ro
 
     [DisplayName("Tenant"), ForeignKey("Tenants", "TenantId"), LeftJoin("tnt")]
     [LookupEditor(typeof(TenantRow))]
+    [ReadPermission(PermissionKeys.Tenants)]
+
     public int? TenantId { get => Fields.TenantId[this];  set => Fields.TenantId[this] = value; }
 
     [DisplayName("Tenant"), Expression("tnt.TenantName")]

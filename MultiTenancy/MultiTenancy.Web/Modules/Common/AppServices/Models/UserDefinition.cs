@@ -1,4 +1,4 @@
-﻿namespace MultiTenancy;
+namespace MultiTenancy;
 
 [Serializable]
 public class UserDefinition : IUserDefinition, IHasPassword
@@ -15,5 +15,7 @@ public class UserDefinition : IUserDefinition, IHasPassword
     public string Source { get; set; }
     public DateTime? UpdateDate { get; set; }
     public DateTime? LastDirectoryUpdate { get; set; }
+    public int TenantId { get; set; }
+
     public bool HasPassword => PasswordSalt != "unassigned";
 }

@@ -1,4 +1,4 @@
-﻿using MyRequest = Serenity.Services.SaveRequest<MultiTenancy.Administration.UserRow>;
+using MyRequest = Serenity.Services.SaveRequest<MultiTenancy.Administration.UserRow>;
 using MyResponse = Serenity.Services.SaveResponse;
 using MyRow = MultiTenancy.Administration.UserRow;
 
@@ -91,6 +91,11 @@ public class UserSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>,
         {
             Row.Source = "site";
             Row.IsActive = Row.IsActive ?? 1;
+            //if (!Permissions.HasPermission(PermissionKeys.Tenants) ||
+            //Row.TenantId == null)
+            //{
+            //   /// Row.TenantId = User.GetTenantId();
+            //}
         }
 
         if (IsCreate || !Row.Password.IsEmptyOrNull())
