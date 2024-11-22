@@ -1,4 +1,5 @@
-﻿using MyRequest = Serenity.Services.SaveRequest<MultiTenancy.Administration.RoleRow>;
+using MultiTenancy.Modules.Administration;
+using MyRequest = Serenity.Services.SaveRequest<MultiTenancy.Administration.RoleRow>;
 using MyResponse = Serenity.Services.SaveResponse;
 using MyRow = MultiTenancy.Administration.RoleRow;
 
@@ -18,4 +19,12 @@ public class RoleSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>,
         Cache.InvalidateOnCommit(UnitOfWork, UserPermissionRow.Fields);
         Cache.InvalidateOnCommit(UnitOfWork, RolePermissionRow.Fields);
     }
+    protected override void SetInternalFields()
+    {
+        base.SetInternalFields();
+
+        if (IsCreate)
+            Row.TenantId = User.GetTenantId();
+    }
+
 }

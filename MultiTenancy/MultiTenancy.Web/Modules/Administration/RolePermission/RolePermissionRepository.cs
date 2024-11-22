@@ -1,13 +1,19 @@
-﻿using System.Data;
+using System.Data;
 using MyRow = MultiTenancy.Administration.RolePermissionRow;
 
 namespace MultiTenancy.Administration.Repositories;
 public class RolePermissionRepository : BaseRepository
 {
-    public RolePermissionRepository(IRequestContext context)
-         : base(context)
+    public ITypeSource TypeSource { get; }
+    public ISqlConnections SqlConnections { get; }
+
+    public RolePermissionRepository(IRequestContext context, ITypeSource typeSource, ISqlConnections sqlConnections)
+            : base(context)
     {
+        TypeSource = typeSource ?? throw new ArgumentNullException(nameof(typeSource));
+        SqlConnections = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
     }
+
 
     private static MyRow.RowFields Fld { get { return MyRow.Fields; } }
 

@@ -1,3 +1,4 @@
+using MultiTenancy.Modules.Administration;
 using MyRequest = Serenity.Services.SaveRequest<MultiTenancy.Administration.UserRow>;
 using MyResponse = Serenity.Services.SaveResponse;
 using MyRow = MultiTenancy.Administration.UserRow;
@@ -65,6 +66,9 @@ public class UserSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>,
 
             if (Row.DisplayName != Old.DisplayName)
                 Row.DisplayName = UserHelper.ValidateDisplayName(Row.DisplayName, Localizer);
+
+            if (Old.TenantId != User.GetTenantId())
+                Permissions.ValidatePermission(PermissionKeys.Tenants, Context.Localizer);
         }
 
         if (IsCreate)
@@ -91,11 +95,11 @@ public class UserSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>,
         {
             Row.Source = "site";
             Row.IsActive = Row.IsActive ?? 1;
-            //if (!Permissions.HasPermission(PermissionKeys.Tenants) ||
-            //Row.TenantId == null)
-            //{
-            //   /// Row.TenantId = User.GetTenantId();
-            //}
+            if (!Permissions.HasPermission(PermissionKeys.Tenants) ||
+            Row.TenantId == null)
+            {
+                 Row.TenantId = User.GetTenantId();
+            }
         }
 
         if (IsCreate || !Row.Password.IsEmptyOrNull())

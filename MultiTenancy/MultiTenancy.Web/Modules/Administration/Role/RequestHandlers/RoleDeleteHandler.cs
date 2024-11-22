@@ -1,4 +1,5 @@
-﻿using MyRequest = Serenity.Services.DeleteRequest;
+using MultiTenancy.Modules.Administration;
+using MyRequest = Serenity.Services.DeleteRequest;
 using MyResponse = Serenity.Services.DeleteResponse;
 using MyRow = MultiTenancy.Administration.RoleRow;
 
@@ -11,4 +12,5 @@ public class RoleDeleteHandler : DeleteRequestHandler<MyRow, MyRequest, MyRespon
          : base(context)
     {
     }
+   
 }

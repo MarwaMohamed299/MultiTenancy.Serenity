@@ -1,4 +1,5 @@
-﻿using Serenity.Extensions.Entities;
+using MultiTenancy.Modules.Administration;
+using Serenity.Extensions.Entities;
 using System.Data;
 using MyRequest = Serenity.Services.DeleteRequest;
 using MyResponse = Serenity.Services.DeleteResponse;
@@ -21,7 +22,8 @@ public class UserDeleteHandler : DeleteRequestHandler<MyRow, MyRequest, MyRespon
     {
         base.ValidateRequest();
 
-        environmentOptions.CheckPublicDemo(Row.UserId);
+        if (Row.TenantId != User.GetTenantId())
+            Permissions.ValidatePermission(PermissionKeys.Tenants, Context.Localizer);
     }
 
     protected override void OnBeforeDelete()

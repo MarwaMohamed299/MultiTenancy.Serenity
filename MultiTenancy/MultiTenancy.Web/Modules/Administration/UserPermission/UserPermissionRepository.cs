@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Caching.Memory;
 using System.Data;
 using MyRow = MultiTenancy.Administration.UserPermissionRow;
 
@@ -29,6 +29,10 @@ public class UserPermissionRepository : BaseRepository
         var newList = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
         foreach (var p in request.Permissions)
             newList[p.PermissionKey] = p.Granted ?? false;
+
+        //var allowedKeys = ListPermissionKeys(this.Cache, this.SqlConnections, this.TypeSource);
+        //if (newList.Keys.Any(x => !allowedKeys.Contains(x)))
+        //    throw new AccessViolationException();
 
         if (oldList.Count == newList.Count &&
             oldList.All(x => newList.ContainsKey(x.Key) && newList[x.Key] == x.Value))

@@ -1,4 +1,5 @@
-﻿using MyRequest = Serenity.Services.RetrieveRequest;
+using MultiTenancy.Modules.Administration;
+using MyRequest = Serenity.Services.RetrieveRequest;
 using MyResponse = Serenity.Services.RetrieveResponse<MultiTenancy.Administration.RoleRow>;
 using MyRow = MultiTenancy.Administration.RoleRow;
 
@@ -11,4 +12,5 @@ public class RoleRetrieveHandler : RetrieveRequestHandler<MyRow, MyRequest, MyRe
          : base(context)
     {
     }
+
 }

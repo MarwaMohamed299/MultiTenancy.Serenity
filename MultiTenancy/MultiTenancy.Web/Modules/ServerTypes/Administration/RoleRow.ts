@@ -3,6 +3,7 @@
 export interface RoleRow {
     RoleId?: number;
     RoleName?: string;
+    TenantId?: number;
 }
 
 export abstract class RoleRow {

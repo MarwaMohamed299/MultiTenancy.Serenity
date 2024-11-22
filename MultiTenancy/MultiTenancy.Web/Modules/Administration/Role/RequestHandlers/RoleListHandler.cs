@@ -1,4 +1,5 @@
-﻿using MyRequest = Serenity.Services.ListRequest;
+using MultiTenancy.Modules.Administration;
+using MyRequest = Serenity.Services.ListRequest;
 using MyResponse = Serenity.Services.ListResponse<MultiTenancy.Administration.RoleRow>;
 using MyRow = MultiTenancy.Administration.RoleRow;
 
@@ -12,4 +13,5 @@ public class RoleListHandler : ListRequestHandler<MyRow, MyRequest, MyResponse>,
          : base(context)
     {
     }
+   
 }

@@ -1,4 +1,4 @@
-﻿using MyRepository = MultiTenancy.Administration.Repositories.RolePermissionRepository;
+using MyRepository = MultiTenancy.Administration.Repositories.RolePermissionRepository;
 using MyRow = MultiTenancy.Administration.RolePermissionRow;
 
 namespace MultiTenancy.Administration.Endpoints;
@@ -6,14 +6,19 @@ namespace MultiTenancy.Administration.Endpoints;
 [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
 public class RolePermissionEndpoint : ServiceEndpoint
 {
+
     [HttpPost, AuthorizeUpdate(typeof(MyRow))]
-    public SaveResponse Update(IUnitOfWork uow, RolePermissionUpdateRequest request)
+    public SaveResponse Update(IUnitOfWork uow, RolePermissionUpdateRequest request,
+    [FromServices] ITypeSource typeSource,
+    [FromServices] ISqlConnections sqlConnections)
     {
-        return new MyRepository(Context).Update(uow, request);
+        return new MyRepository(Context, typeSource, sqlConnections).Update(uow, request);
     }
 
-    public RolePermissionListResponse List(IDbConnection connection, RolePermissionListRequest request)
+    public RolePermissionListResponse List(IDbConnection connection, RolePermissionListRequest request,
+        [FromServices] ITypeSource typeSource,
+        [FromServices] ISqlConnections sqlConnections)
     {
-        return new MyRepository(Context).List(connection, request);
+        return new MyRepository(Context, typeSource, sqlConnections).List(connection, request);
     }
 }
